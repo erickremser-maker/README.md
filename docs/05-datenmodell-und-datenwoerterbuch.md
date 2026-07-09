@@ -162,3 +162,73 @@
 | Dokumentmetadatum | Verantwortlich | Lookup Projektrolle | Ja | manuell | Projektmanager | Dokumentenbereich | Ja |
 | Dokumentmetadatum | SharePoint-Link | URL | Ja | Import/SharePoint | System | Dokumentenbereich | Ja |
 | Dokumentmetadatum | Pflichtdokument | Ja/Nein | Ja | manuell/berechnet | PMO | Dokumentenbereich, Phasenübersicht | Ja |
+
+### Tabelle: Planprüfung
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| Planprüfung | Projekt | Lookup Projekt | Ja | berechnet | System | Planprüfung, Projektakte | Ja |
+| Planprüfung | Phase | Lookup Projektphase | Ja | berechnet | System | Planprüfung, Phasenübersicht | Ja |
+| Planprüfung | Prüfgegenstand | Text | Ja | manuell | Projektmanager, Planprüfer | Planprüfung | Ja |
+| Planprüfung | Eingangsdatum | Datum | Ja | manuell | Planprüfer, Projektmanager | Planprüfung | Ja |
+| Planprüfung | Prüffrist | Datum | Ja | manuell/berechnet | Planprüfer, Projektmanager | Planprüfung, Portfolio | Ja |
+| Planprüfung | Planprüfer | Lookup Projektrolle | Ja | manuell | Projektmanager, PMO | Planprüfung, Rollenmatrix | Ja |
+| Planprüfung | Prüfstatus | Auswahl | Ja | manuell | Planprüfer | Planprüfung, Phasenübersicht | Ja |
+| Planprüfung | Prüfergebnis | Auswahl | bedingt | manuell | Planprüfer | Planprüfung | Ja |
+| Planprüfung | Anzahl offene Mängel | Ganze Zahl | Ja | berechnet | System | Planprüfung, Portfolio | Ja |
+| Planprüfung | Freigabekommentar | Mehrzeiliger Text | bedingt | manuell | Planprüfer | Planprüfung, Entscheidungslog | Ja |
+| Planprüfung | Prüfprotokoll-Link | URL/Lookup Dokument | bedingt | Import/SharePoint | Planprüfer, Dokumentationsverantwortlicher | Planprüfung, Dokumentenbereich | Ja |
+
+### Tabelle: Prüfmangel
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| Prüfmangel | Planprüfung | Lookup Planprüfung | Ja | berechnet | System | Planprüfung | Ja |
+| Prüfmangel | Mangelnummer | Autonummer | Ja | berechnet | System | Planprüfung | Ja |
+| Prüfmangel | Beschreibung | Mehrzeiliger Text | Ja | manuell | Planprüfer | Planprüfung, Aufgabenliste | Ja |
+| Prüfmangel | Kategorie | Auswahl | Ja | manuell | Planprüfer | Planprüfung | Ja |
+| Prüfmangel | Verantwortliche Rolle | Lookup Projektrolle | Ja | manuell | Planprüfer, Projektmanager | Planprüfung, Aufgabenliste | Ja |
+| Prüfmangel | Fälligkeitsdatum | Datum | Ja | manuell | Planprüfer, Projektmanager | Planprüfung, Aufgabenliste | Ja |
+| Prüfmangel | Mangelstatus | Auswahl | Ja | manuell | Planprüfer, Planungsingenieur | Planprüfung | Ja |
+| Prüfmangel | Nachweis-Link | URL/Lookup Dokument | Nein | Import/SharePoint | Planungsingenieur | Planprüfung, Dokumentenbereich | Ja |
+
+### Tabelle: BVB-Freigabe
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| BVB-Freigabe | Projekt | Lookup Projekt | Ja | berechnet | System | BVB-Freigabe, Projektakte | Ja |
+| BVB-Freigabe | Phase | Lookup Projektphase | Ja | berechnet | System | BVB-Freigabe, Phasenübersicht | Ja |
+| BVB-Freigabe | BVB-Rolle | Lookup Projektrolle | Ja | manuell | Projektmanager, PMO | BVB-Freigabe, Rollenmatrix | Ja |
+| BVB-Freigabe | Freigabegegenstand | Text | Ja | manuell | Projektmanager, BVB | BVB-Freigabe | Ja |
+| BVB-Freigabe | Betroffene Pläne | Mehrfach-Lookup Dokument | Ja | manuell | Planungsingenieur, BVB | BVB-Freigabe, Dokumentenbereich | Ja |
+| BVB-Freigabe | Freigabestatus | Auswahl | Ja | manuell | BVB | BVB-Freigabe, Portfolio | Ja |
+| BVB-Freigabe | Freigabedatum | Datum | bedingt | manuell | BVB | BVB-Freigabe | Ja |
+| BVB-Freigabe | Entscheidung | Auswahl | bedingt | manuell | BVB | BVB-Freigabe, Entscheidungslog | Ja |
+| BVB-Freigabe | Entscheidungsbegründung | Mehrzeiliger Text | bedingt | manuell | BVB | BVB-Freigabe | Ja |
+| BVB-Freigabe | Freigabedokument-Link | URL/Lookup Dokument | bedingt | Import/SharePoint | BVB, Dokumentationsverantwortlicher | BVB-Freigabe, Dokumentenbereich | Ja |
+
+### Tabelle: BVB-Auflage
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| BVB-Auflage | BVB-Freigabe | Lookup BVB-Freigabe | Ja | berechnet | System | BVB-Freigabe | Ja |
+| BVB-Auflage | Auflagentitel | Text | Ja | manuell | BVB | BVB-Freigabe, Aufgabenliste | Ja |
+| BVB-Auflage | Auflagenbeschreibung | Mehrzeiliger Text | Ja | manuell | BVB | BVB-Freigabe | Ja |
+| BVB-Auflage | Verantwortliche Rolle | Lookup Projektrolle | Ja | manuell | BVB, Projektmanager | BVB-Freigabe, Aufgabenliste | Ja |
+| BVB-Auflage | Fälligkeitsdatum | Datum | Ja | manuell | BVB, Projektmanager | BVB-Freigabe, Aufgabenliste | Ja |
+| BVB-Auflage | Auflagenstatus | Auswahl | Ja | manuell | BVB, Planungsingenieur | BVB-Freigabe | Ja |
+| BVB-Auflage | Erledigungsnachweis-Link | URL/Lookup Dokument | bedingt | Import/SharePoint | Planungsingenieur, BVB | BVB-Freigabe, Dokumentenbereich | Ja |
+
+### Tabelle: Aufgabe / Offener Punkt
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| Aufgabe | Projekt | Lookup Projekt | Ja | berechnet | System | Projektakte, Aufgabenliste | Ja |
+| Aufgabe | Bezug | Auswahl/Lookup | Nein | manuell/berechnet | System, Projektmanager | Aufgabenliste | Ja |
+| Aufgabe | Titel | Text | Ja | manuell | Projektmanager, Planprüfer, BVB | Projektakte, Aufgabenliste | Ja |
+| Aufgabe | Beschreibung | Mehrzeiliger Text | Nein | manuell | Ersteller, Verantwortlicher | Aufgabenliste | Ja |
+| Aufgabe | Verantwortliche Rolle | Lookup Projektrolle | Ja | manuell | Projektmanager, Ersteller | Aufgabenliste, Rollenmatrix | Ja |
+| Aufgabe | Fälligkeitsdatum | Datum | Ja | manuell | Projektmanager, Ersteller | Aufgabenliste, Portfolio | Ja |
+| Aufgabe | Priorität | Auswahl | Ja | manuell | Projektmanager, Ersteller | Aufgabenliste | Ja |
+| Aufgabe | Aufgabenstatus | Auswahl | Ja | manuell | Verantwortliche Rolle | Aufgabenliste | Ja |
+| Aufgabe | Erledigt am | Datum | Nein | berechnet/manuell | Verantwortliche Rolle | Aufgabenliste, Änderungsverlauf | Ja |
