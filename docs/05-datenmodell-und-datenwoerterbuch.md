@@ -64,33 +64,57 @@
 | Projektphase | Pflichtdokumente vollständig | Ja/Nein | Ja | berechnet | System | Phasenübersicht | Ja |
 | Projektphase | Blockadegrund | Mehrzeiliger Text | Nein | manuell | Projektmanager, verantwortliche Rolle | Phasenübersicht | Ja |
 
-### Tabelle: Termin
+### Tabelle: Termin / Meilenstein
+
+Diese Tabelle bildet mehrere Termine je Projekt ab, z. B. Planungsabschluss, Prüffreigabe, BVB-Freigabe, Realisierungsstart, Abnahme, Inbetriebnahme und Dokumentationsabschluss.
 
 | Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
 |---|---|---|---|---|---|---|---|
-| Termin | Projekt | Lookup Projekt | Ja | berechnet | System | Terminübersicht | Ja |
-| Termin | Termintitel | Text | Ja | manuell | Projektmanager | Terminübersicht, Projektakte | Ja |
-| Termin | Termintyp | Auswahl | Ja | manuell | Projektmanager | Terminübersicht | Ja |
-| Termin | Datum ursprünglich | Datum | Ja | manuell | Projektmanager | Terminübersicht | Ja |
-| Termin | Datum aktuell | Datum | Ja | berechnet/manuell via Genehmigung | Projektmanager nach Genehmigung | Terminübersicht, Portfolio | Ja |
-| Termin | Datum ist | Datum | Nein | manuell | Projektmanager, Realisierungsverantwortlicher | Terminübersicht | Ja |
-| Termin | Kritisch | Ja/Nein | Ja | manuell | Projektmanager | Terminübersicht | Ja |
-| Termin | Terminstatus | Auswahl | Ja | manuell/berechnet | Projektmanager | Terminübersicht | Ja |
+| Termin / Meilenstein | Projekt | Lookup Projekt | Ja | berechnet | System | Terminübersicht | Ja |
+| Termin / Meilenstein | Termintitel | Text | Ja | manuell | Projektmanager | Terminübersicht, Projektakte | Ja |
+| Termin / Meilenstein | Termintyp | Auswahl | Ja | manuell | Projektmanager | Terminübersicht | Ja |
+| Termin / Meilenstein | Datum ursprünglich | Datum | Ja | manuell | Projektmanager | Terminübersicht | Ja |
+| Termin / Meilenstein | Datum aktuell | Datum | Ja | berechnet/manuell via Genehmigung | Projektmanager nach Genehmigung | Terminübersicht, Portfolio | Ja |
+| Termin / Meilenstein | Datum ist | Datum | Nein | manuell | Projektmanager, Realisierungsverantwortlicher | Terminübersicht | Ja |
+| Termin / Meilenstein | Terminstatus | Auswahl | Ja | manuell/berechnet | Projektmanager | Terminübersicht | Ja |
+| Termin / Meilenstein | Kritisch ja/nein | Ja/Nein | Ja | manuell | Projektmanager | Terminübersicht | Ja |
+| Termin / Meilenstein | Verantwortliche Rolle | Lookup Projektrolle | Ja | manuell | Projektmanager | Terminübersicht, Rollenmatrix | Ja |
+| Termin / Meilenstein | Kommentar | Mehrzeiliger Text | Nein | manuell | Projektmanager, Verantwortliche Rolle | Terminübersicht | Ja |
+| Termin / Meilenstein | Historisierung | Ja/Nein/Systemfeld | Ja | berechnet | System | Änderungsverlauf | Ja |
 
 ### Tabelle: Terminverschiebung
 
 | Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
 |---|---|---|---|---|---|---|---|
-| Terminverschiebung | Termin | Lookup Termin | Ja | berechnet | System | Terminübersicht, Änderungsverlauf | Ja |
+| Terminverschiebung | Termin / Meilenstein | Lookup Termin / Meilenstein | Ja | berechnet | System | Terminübersicht, Änderungsverlauf | Ja |
 | Terminverschiebung | Altes Datum | Datum | Ja | berechnet | System | Terminverschiebungsdialog | Ja |
 | Terminverschiebung | Neues Datum | Datum | Ja | manuell | Projektmanager, Realisierungsverantwortlicher | Terminverschiebungsdialog | Ja |
 | Terminverschiebung | Grund | Mehrzeiliger Text | Ja | manuell | Einreicher | Terminverschiebungsdialog | Ja |
 | Terminverschiebung | Ursache | Auswahl | Ja | manuell | Einreicher | Terminverschiebungsdialog | Ja |
 | Terminverschiebung | Auswirkung Budget | Währung/Text | Ja | manuell | Einreicher, PMO | Terminverschiebungsdialog, Budgetansicht | Ja |
 | Terminverschiebung | Auswirkung Stunden | Zahl/Text | Ja | manuell | Einreicher | Terminverschiebungsdialog, Stundenansicht | Ja |
-| Terminverschiebung | Betroffene Rollen | Mehrfach-Lookup | Ja | manuell | Einreicher | Terminverschiebungsdialog | Ja |
 | Terminverschiebung | Genehmigungsstatus | Auswahl | Ja | berechnet/manuell | Genehmiger | Terminübersicht, Änderungsverlauf | Ja |
 | Terminverschiebung | Genehmiger | Lookup Projektrolle | Ja | manuell/berechnet | Projektmanager, PMO | Terminverschiebungsdialog | Ja |
+
+### Modellierung von Mehrfachzuordnungen in Dataverse
+
+Dataverse bildet Mehrfachzuordnungen nativ über Beziehungen bzw. eigene Beziehungstabellen ab. Deshalb werden mehrere betroffene Rollen, Phasen, Dokumente oder Objekte nicht als einzelnes Feld vom Typ „mehrwertiges Lookup“ modelliert, sondern als N:N-Beziehungen oder explizite Zwischentabellen. Das verbessert Berechtigungen, Historisierung, Auswertbarkeit und spätere Erweiterbarkeit.
+
+### Tabelle: Terminverschiebung_BetroffeneRolle
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| Terminverschiebung_BetroffeneRolle | Terminverschiebung | Lookup Terminverschiebung | Ja | berechnet | System | Terminverschiebungsdialog | Ja |
+| Terminverschiebung_BetroffeneRolle | Projektrolle | Lookup Projektrolle | Ja | manuell | Einreicher | Terminverschiebungsdialog, Rollenmatrix | Ja |
+| Terminverschiebung_BetroffeneRolle | Auswirkungsbeschreibung | Mehrzeiliger Text | Nein | manuell | Einreicher | Terminverschiebungsdialog | Ja |
+
+### Tabelle: Terminverschiebung_BetroffenePhase
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| Terminverschiebung_BetroffenePhase | Terminverschiebung | Lookup Terminverschiebung | Ja | berechnet | System | Terminverschiebungsdialog | Ja |
+| Terminverschiebung_BetroffenePhase | Projektphase | Lookup Projektphase | Ja | manuell | Einreicher | Terminverschiebungsdialog, Phasenübersicht | Ja |
+| Terminverschiebung_BetroffenePhase | Auswirkung auf Phase | Mehrzeiliger Text | Nein | manuell | Einreicher | Terminverschiebungsdialog | Ja |
 
 ### Tabelle: Budgetposition
 
@@ -150,6 +174,15 @@
 | Entscheidung | Auswirkung Termin/Budget/Stunden | Mehrzeiliger Text | Nein | manuell | Projektmanager | Entscheidungslog | Ja |
 | Entscheidung | Dokumentverweis | URL/Lookup Dokument | Nein | manuell | Projektmanager | Entscheidungslog | Ja |
 
+### Tabelle: Entscheidung_BetroffeneObjekte
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| Entscheidung_BetroffeneObjekte | Entscheidung | Lookup Entscheidung | Ja | berechnet | System | Entscheidungslog | Ja |
+| Entscheidung_BetroffeneObjekte | Objekttyp | Auswahl | Ja | manuell | Projektmanager | Entscheidungslog | Ja |
+| Entscheidung_BetroffeneObjekte | Objektverweis | Lookup auf fachliches Objekt | Ja | manuell | Projektmanager | Entscheidungslog, Änderungsverlauf | Ja |
+| Entscheidung_BetroffeneObjekte | Auswirkungsbeschreibung | Mehrzeiliger Text | Nein | manuell | Projektmanager | Entscheidungslog | Ja |
+
 ### Tabelle: Dokumentmetadatum
 
 | Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
@@ -192,6 +225,14 @@
 | Prüfmangel | Mangelstatus | Auswahl | Ja | manuell | Planprüfer, Planungsingenieur | Planprüfung | Ja |
 | Prüfmangel | Nachweis-Link | URL/Lookup Dokument | Nein | Import/SharePoint | Planungsingenieur | Planprüfung, Dokumentenbereich | Ja |
 
+### Tabelle: Prüfmangel_BetroffeneDokumente
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| Prüfmangel_BetroffeneDokumente | Prüfmangel | Lookup Prüfmangel | Ja | berechnet | System | Planprüfung | Ja |
+| Prüfmangel_BetroffeneDokumente | Dokumentmetadatum | Lookup Dokumentmetadatum | Ja | manuell | Planprüfer, Planungsingenieur | Planprüfung, Dokumentenbereich | Ja |
+| Prüfmangel_BetroffeneDokumente | Bezugstyp | Auswahl | Nein | manuell | Planprüfer | Planprüfung | Ja |
+
 ### Tabelle: BVB-Freigabe
 
 | Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
@@ -200,12 +241,19 @@
 | BVB-Freigabe | Phase | Lookup Projektphase | Ja | berechnet | System | BVB-Freigabe, Phasenübersicht | Ja |
 | BVB-Freigabe | BVB-Rolle | Lookup Projektrolle | Ja | manuell | Projektmanager, PMO | BVB-Freigabe, Rollenmatrix | Ja |
 | BVB-Freigabe | Freigabegegenstand | Text | Ja | manuell | Projektmanager, BVB | BVB-Freigabe | Ja |
-| BVB-Freigabe | Betroffene Pläne | Mehrfach-Lookup Dokument | Ja | manuell | Planungsingenieur, BVB | BVB-Freigabe, Dokumentenbereich | Ja |
 | BVB-Freigabe | Freigabestatus | Auswahl | Ja | manuell | BVB | BVB-Freigabe, Portfolio | Ja |
 | BVB-Freigabe | Freigabedatum | Datum | bedingt | manuell | BVB | BVB-Freigabe | Ja |
 | BVB-Freigabe | Entscheidung | Auswahl | bedingt | manuell | BVB | BVB-Freigabe, Entscheidungslog | Ja |
 | BVB-Freigabe | Entscheidungsbegründung | Mehrzeiliger Text | bedingt | manuell | BVB | BVB-Freigabe | Ja |
 | BVB-Freigabe | Freigabedokument-Link | URL/Lookup Dokument | bedingt | Import/SharePoint | BVB, Dokumentationsverantwortlicher | BVB-Freigabe, Dokumentenbereich | Ja |
+
+### Tabelle: BVB_Freigabe_BetroffeneDokumente
+
+| Tabellenname | Feldname | Datentyp | Pflichtfeld | Quelle | Schreibberechtigte Rolle | Anzeige in Maske | Historisierung |
+|---|---|---|---|---|---|---|---|
+| BVB_Freigabe_BetroffeneDokumente | BVB-Freigabe | Lookup BVB-Freigabe | Ja | berechnet | System | BVB-Freigabe | Ja |
+| BVB_Freigabe_BetroffeneDokumente | Dokumentmetadatum | Lookup Dokumentmetadatum | Ja | manuell | Planungsingenieur, BVB | BVB-Freigabe, Dokumentenbereich | Ja |
+| BVB_Freigabe_BetroffeneDokumente | Relevanz | Auswahl | Nein | manuell | BVB | BVB-Freigabe | Ja |
 
 ### Tabelle: BVB-Auflage
 

@@ -13,14 +13,21 @@
 
 ## Dataverse-Tabellen und Umsetzungshinweise
 
+Dataverse bildet Mehrfachzuordnungen über Beziehungen bzw. eigene Beziehungstabellen ab. Mehrere betroffene Rollen, Phasen, Dokumente oder Objekte werden daher nicht als einzelne „mehrwertige Lookup“-Spalte modelliert, sondern über N:N-Beziehungen bzw. explizite Zwischentabellen.
+
 | Tabelle | Typ | Primärspalte | Besonderheit |
 |---|---|---|---|
 | Projekt | Standard/custom | Projekttitel | Autonummer für Projekt-ID |
 | Person | Benutzer/Kontakt | Name | interne Benutzer über Entra, externe als Kontakt |
 | Projektrolle | custom | Rolle + Person | historisierbare Rollenzuordnung |
 | Projektphase | custom | Phase | automatisch sechs Phasen je Projekt erzeugen |
-| Termin | custom | Termintitel | Baseline und aktuelles Datum getrennt |
-| Terminverschiebung | custom | Termin + Datum | Business Process Flow/Genehmigung |
+| Termin / Meilenstein | custom | Termintitel | mehrere Termine je Projekt; Baseline, aktuelles Datum, Ist-Datum getrennt |
+| Terminverschiebung | custom | Termin / Meilenstein + Datum | Business Process Flow/Genehmigung |
+| Terminverschiebung_BetroffeneRolle | custom | Terminverschiebung + Projektrolle | Zwischentabelle für N:N-Zuordnung |
+| Terminverschiebung_BetroffenePhase | custom | Terminverschiebung + Projektphase | Zwischentabelle für N:N-Zuordnung |
+| BVB_Freigabe_BetroffeneDokumente | custom | BVB-Freigabe + Dokument | Zwischentabelle für N:N-Zuordnung |
+| Prüfmangel_BetroffeneDokumente | custom | Prüfmangel + Dokument | Zwischentabelle für N:N-Zuordnung |
+| Entscheidung_BetroffeneObjekte | custom | Entscheidung + Objekt | Zwischentabelle für betroffene Fachobjekte |
 | Budgetposition | custom | Kostenart + Phase | berechnete Spalten für Rest/Abweichung |
 | Stundenposition | custom | Person + Zeitraum | Import aus Zeiterfassung möglich |
 | Risiko | custom | Risikotitel | Risikowert berechnet |
@@ -35,7 +42,7 @@
 | Projekte | Projektakte | Projektformular |
 | Projekte | Rollenmatrix | Projektrolle |
 | Projekte | Phasenübersicht | Projektphase |
-| Steuerung | Termine | Termin, Terminverschiebung |
+| Steuerung | Termine | Termin / Meilenstein, Terminverschiebung, Terminverschiebung_BetroffeneRolle, Terminverschiebung_BetroffenePhase |
 | Steuerung | Risiken | Risiko |
 | Steuerung | Entscheidungen | Entscheidung |
 | Finanzen & Ressourcen | Budget | Budgetposition |

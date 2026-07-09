@@ -236,12 +236,28 @@ Stunden werden je Person, Rolle, Projekt und Phase geplant und verfolgt. Dadurch
 
 ### 5.6 Termin- und Terminverschiebungsmodell
 
-Jeder Meilenstein und jeder Inbetriebnahmetermin wird mit Baseline, aktuellem Termin und tatsächlichem Termin geführt. Eine Änderung am aktuellen Termin erzeugt verpflichtend einen Terminverschiebungsdatensatz.
+Jeder Meilenstein und jeder Inbetriebnahmetermin wird in der Tabelle „Termin / Meilenstein“ mit Baseline, aktuellem Termin und tatsächlichem Termin geführt. Ein Projekt kann mehrere Termine enthalten, z. B. Planungsabschluss, Prüffreigabe, BVB-Freigabe, Realisierungsstart, Abnahme, Inbetriebnahme und Dokumentationsabschluss.
 
 | Feld | Typ | Beschreibung |
 |---|---|---|
 | Projekt | Lookup Projekt | Zugehöriges Projekt |
-| Termin / Meilenstein | Lookup Termin | betroffener Termin |
+| Termintitel | Text | sprechender Name des Termins |
+| Termintyp | Auswahl | Planungsabschluss, Prüffreigabe, BVB-Freigabe, Realisierungsstart, Abnahme, Inbetriebnahme, Dokumentationsabschluss |
+| Datum ursprünglich | Datum | Baseline-Termin |
+| Datum aktuell | Datum | aktuell gültiger Termin |
+| Datum ist | Datum | tatsächlich erreichter Termin |
+| Terminstatus | Auswahl | Geplant, Gefährdet, Verschoben, Erreicht, Entfallen |
+| Kritisch ja/nein | Ja/Nein | Kennzeichnung kritischer Meilensteine |
+| Verantwortliche Rolle | Lookup Projektrolle | verantwortliche Projektrolle |
+| Kommentar | Mehrzeiliger Text | Erläuterung zum Termin |
+| Historisierung | System/Audit | Änderungen werden historisiert |
+
+Eine Änderung am aktuellen Termin erzeugt verpflichtend einen Terminverschiebungsdatensatz.
+
+| Feld | Typ | Beschreibung |
+|---|---|---|
+| Projekt | Lookup Projekt | Zugehöriges Projekt |
+| Termin / Meilenstein | Lookup Termin / Meilenstein | betroffener Termin |
 | Termintyp | Auswahl | Inbetriebnahme, Planungsabschluss, Prüffreigabe, BVB-Freigabe, Realisierungsstart, Abnahme, Dokumentationsabschluss |
 | Altes Datum | Datum | bisher gültiger Termin |
 | Neues Datum | Datum | neuer beantragter Termin |
@@ -249,15 +265,15 @@ Jeder Meilenstein und jeder Inbetriebnahmetermin wird mit Baseline, aktuellem Te
 | Ursache | Auswahl, Pflichtfeld | Planungsänderung, fehlende Unterlagen, Prüfrückfrage, BVB-Auflage, Lieferverzug, Ressourcenmangel, externe Abhängigkeit, Budgetentscheidung, technisches Problem, Wetter/Sperrzeit, Sonstiges |
 | Auswirkung auf Budget | Währung/Text, Pflichtfeld | erwartete Mehr- oder Minderkosten und Erläuterung |
 | Auswirkung auf Stunden | Zahl/Text, Pflichtfeld | erwartete Mehr- oder Minderstunden und Erläuterung |
-| Betroffene Rollen | Mehrfach-Lookup Projektrolle | z.B. Planungsingenieur, BVB, Planprüfer, Realisierungsverantwortlicher |
-| Betroffene Phasen | Mehrfach-Lookup Projektphase | Phasen mit Terminwirkung |
+| Betroffene Rollen | Zwischentabelle Terminverschiebung_BetroffeneRolle | mehrere betroffene Projektrollen als einzelne Zuordnungsdatensätze |
+| Betroffene Phasen | Zwischentabelle Terminverschiebung_BetroffenePhase | mehrere betroffene Phasen als einzelne Zuordnungsdatensätze |
 | Auswirkung auf Inbetriebnahme | Auswahl | Keine, Gefährdet, Verschiebt sich, Noch offen |
 | Genehmigungsstatus | Auswahl | Entwurf, Eingereicht, In Prüfung, Genehmigt, Abgelehnt, Zurückgezogen |
 | Genehmiger | Lookup Projektrolle/Person | z.B. Projektmanager, Auftraggeber, PMO oder Steuerungskreis |
 | Entscheidung / Kommentar | Mehrzeiliger Text | Freigabe- oder Ablehnungsgrund |
 | Erstellt von / am | Person, Datum | Nachvollziehbarkeit |
 
-Regel: Ohne ausgefüllten Grund, Ursache, Budgetauswirkung, Stundenauswirkung, betroffene Rollen und Genehmigungsstatus darf ein kritischer Meilenstein oder Inbetriebnahmetermin nicht verschoben werden.
+Regel: Ohne ausgefüllten Grund, Ursache, Budgetauswirkung, Stundenauswirkung, mindestens eine betroffene Rolle über Terminverschiebung_BetroffeneRolle und Genehmigungsstatus darf ein kritischer Meilenstein oder Inbetriebnahmetermin nicht verschoben werden. Dataverse bildet Mehrfachzuordnungen über Beziehungen bzw. eigene Beziehungstabellen ab; deshalb werden mehrere Rollen, Phasen, Dokumente oder betroffene Objekte nicht als einzelnes mehrwertiges Lookup-Feld modelliert.
 
 ## 6. Digitale Projektakte und Benutzeroberfläche
 

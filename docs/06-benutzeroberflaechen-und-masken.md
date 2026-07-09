@@ -11,7 +11,7 @@
 | Terminübersicht | Meilensteine und Inbetriebnahme steuern | Projektmanager, Auftraggeber, PMO | Titel, Typ, Baseline, aktuelles Datum, Ist-Datum, Status, kritisch, Verschiebungen | Ist-Datum, Statuskommentar; aktuelles Datum nur via Workflow | Termintyp, kritisch, überfällig | Termin anlegen, Verschiebung beantragen, Genehmigung öffnen | kritischer Termin nur mit Verschiebungsdatensatz änderbar | Genehmigung, Ablehnung, Fälligkeit |
 | Terminverschiebungsdialog | Pflichtdokumentation von Terminänderungen | Projektmanager, Realisierungsverantwortlicher, Genehmiger | altes Datum, neues Datum, Grund, Ursache, Budgetauswirkung, Stundenauswirkung, Rollen, Status | neues Datum, Grund, Ursache, Auswirkungen, Rollen, Genehmiger | nicht relevant | Einreichen, Genehmigen, Ablehnen, Zurückziehen | alle Pflichtfelder vor Einreichen; Genehmigung vor Aktualisierung | Genehmigungsanfrage, Entscheidung |
 | Planprüfung | Planprüfprozess steuern | Planprüfer, Planungsingenieur, Projektmanager | Prüfgegenstand, Eingangsdatum, Prüffrist, Prüfpunkte, Mängel, Prüfergebnis | Prüfpunkte, Mängel, Ergebnis, Nachbesserung | Prüfer, Status, Fälligkeit | Prüfung starten, Mangel anlegen, Nachbesserung anfordern, freigeben | Ergebnis Pflicht vor Abschluss | überfällige Prüffrist, neue Mängel |
-| BVB-Freigabe | BVB-Entscheidung dokumentieren | BVB, Projektmanager, Auftraggeber | Freigabegegenstand, betroffene Pläne, Auflagen, Entscheidung, Dokumentlink | Auflagen, Entscheidung, Kommentar, Freigabedatum | Status, BVB, Auflagen offen | Freigeben, Ablehnen, Auflage anlegen | Entscheidung nur mit Freigabedokument oder Ablehnungsgrund | Auflage offen, Freigabe/Ablehnung |
+| BVB-Freigabe | BVB-Entscheidung dokumentieren | BVB, Projektmanager, Auftraggeber | Freigabegegenstand, betroffene Dokumente, Auflagen, Entscheidung, Dokumentlink | Auflagen, Entscheidung, Kommentar, Freigabedatum | Status, BVB, Auflagen offen | Freigeben, Ablehnen, Auflage anlegen | Entscheidung nur mit Freigabedokument oder Ablehnungsgrund | Auflage offen, Freigabe/Ablehnung |
 | Risikoübersicht | Risiken überwachen | Projektmanager, Fachverantwortliche, Management | Risiko, Wert, Eintritt, Auswirkung, Maßnahme, Eigner, Fälligkeit | Risiko, Bewertung, Maßnahme, Status | Risikoampel, Eigner, Fälligkeit | Risiko anlegen, eskalieren, schließen | hohes Risiko braucht Maßnahme | Eskalation, Maßnahme überfällig |
 | Budgetansicht | Budgetsteuerung | Projektmanager, Auftraggeber, PMO, Controlling | Soll, Ist, Forecast, gebunden, Rest, Abweichung, Status | Forecast, Kommentar, Zuordnung; Ist per Import | Kostenart, Phase, Rolle, Status | Forecast aktualisieren, Eskalation erstellen | Abweichung > Schwelle braucht Kommentar | Budgetüberschreitung |
 | Stundenansicht | Aufwand und Auslastung steuern | Projektmanager, Teammitglieder, PMO | Person, Rolle, Phase, Zeitraum, Budget, Verbrauch, Forecast, Rest, Auslastung | Stundenbudget, Forecast, eigene Ist-Stunden falls manuell | Person, Rolle, Zeitraum, Phase | Stunden erfassen, Forecast aktualisieren | Überlastung braucht Kommentar oder Maßnahme | Überlastung, Stundenüberschreitung |
@@ -67,7 +67,7 @@
 |---|---|
 | Zweck | BVB-relevante Unterlagen, Auflagen und Entscheidungen verbindlich dokumentieren. |
 | Zielgruppe | Bauvorlagenberechtigter/BVB, Projektmanager, Planungsingenieur, Auftraggeber. |
-| Angezeigte Felder | Freigabegegenstand, BVB-Rolle, betroffene Pläne, Freigabestatus, Auflagen, Entscheidung, Freigabedatum, Freigabedokument. |
+| Angezeigte Felder | Freigabegegenstand, BVB-Rolle, betroffene Dokumente aus Zuordnungstabelle, Freigabestatus, Auflagen, Entscheidung, Freigabedatum, Freigabedokument. |
 | Editierbare Felder | Auflagen, Entscheidung, Entscheidungsbegründung, Freigabedatum, Dokumentverweis. |
 | Filter | Status, BVB, offene Auflagen, Fälligkeit, betroffene Phase. |
 | Aktionen/Buttons | Freigeben, Ablehnen, Auflage erstellen, Auflage schließen, Freigabedokument öffnen. |
@@ -80,11 +80,11 @@
 |---|---|
 | Zweck | kritische Terminänderungen kontrolliert beantragen, bewerten und genehmigen. |
 | Zielgruppe | Projektmanager, Realisierungsverantwortlicher, Auftraggeber, PMO. |
-| Angezeigte Felder | betroffener Termin, altes Datum, neues Datum, Grund, Ursache, Budgetauswirkung, Stundenauswirkung, betroffene Rollen, Genehmigungsstatus. |
-| Editierbare Felder | neues Datum, Grund, Ursache, Auswirkungen, betroffene Rollen, betroffene Phasen, Genehmiger. |
+| Angezeigte Felder | betroffener Termin, altes Datum, neues Datum, Grund, Ursache, Budgetauswirkung, Stundenauswirkung, betroffene Rollen aus Zuordnungstabelle, Genehmigungsstatus. |
+| Editierbare Felder | neues Datum, Grund, Ursache, Auswirkungen, Zuordnungen zu betroffenen Rollen und Phasen, Genehmiger. |
 | Filter | nicht relevant; Dialog aus Termin heraus. |
 | Aktionen/Buttons | Entwurf speichern, Einreichen, Genehmigen, Ablehnen, Zurückziehen. |
-| Pflichtlogiken | Einreichen nur mit Grund, Ursache, Budgetauswirkung, Stundenauswirkung, betroffenen Rollen und Genehmiger; Termin wird erst nach Genehmigung aktualisiert. |
+| Pflichtlogiken | Einreichen nur mit Grund, Ursache, Budgetauswirkung, Stundenauswirkung, mindestens einer Zuordnung in Terminverschiebung_BetroffeneRolle und Genehmiger; Termin wird erst nach Genehmigung aktualisiert. |
 | Benachrichtigungen | Genehmigungsanfrage, Rückfrage, Genehmigung, Ablehnung, überfällige Entscheidung. |
 
 ### Budgetansicht
