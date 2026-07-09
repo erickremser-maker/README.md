@@ -587,6 +587,26 @@ Das MVP muss bereits eine echte digitale Projektakte sein. Es darf nicht nur ein
 11. Cutover definieren: ab Stichtag sind alte Listen nicht mehr führend.
 12. Rollout vorbereiten: Schulungen, Governance, Support, Datenqualitätsberichte und kontinuierliche Verbesserung einplanen.
 
+
+## Ergänzendes Anforderungspaket
+
+Dieses Konzept wird durch ein umsetzungsnahes Dokumentenpaket im Ordner `docs/` ergänzt. Die Dateien gliedern die Anforderungen für Management, Fachbereich, IT und Umsetzungsteam in einzelne Arbeitsdokumente:
+
+| Datei | Inhalt |
+|---|---|
+| `docs/01-management-summary.md` | Management-Zusammenfassung mit Nutzen, Entscheidungen und KPIs |
+| `docs/02-fachliches-zielbild.md` | fachliches Zielbild, Zielgruppen, führende Informationen und Scope |
+| `docs/03-prozess-und-phasenmodell.md` | Prozess- und Phasenmodell mit Status, Pflichtfeldern, Dokumenten und Abhängigkeiten |
+| `docs/04-rollen-und-berechtigungsmatrix.md` | Rollen, Verantwortlichkeiten, Zugriffsstufen und Berechtigungsmatrix |
+| `docs/05-datenmodell-und-datenwoerterbuch.md` | Datenmodell und Datenwörterbuch mit Pflichtfeldern, Quellen, Berechtigungen, Masken und Historisierung |
+| `docs/06-benutzeroberflaechen-und-masken.md` | Maskenkatalog mit Zweck, Zielgruppe, Feldern, Aktionen, Pflichtlogiken und Benachrichtigungen |
+| `docs/07-mvp-backlog.md` | MVP-Backlog nach MoSCoW-Priorisierung |
+| `docs/08-user-stories.md` | User-Story-Katalog mit Akzeptanzkriterien |
+| `docs/09-beispielprojekt.md` | vollständiges Beispielprojekt mit konkreten Beispieldaten |
+| `docs/10-power-platform-umsetzung.md` | Umsetzungshinweise für Dataverse, Power Apps, SharePoint, Power Automate und Power BI |
+| `docs/11-migrationsplan.md` | Migrationsplan mit Quellen, Mapping, Wellen, Datenqualität und Cutover |
+| `docs/12-governance-und-betrieb.md` | Governance, Betrieb, Datenpflege, Release-Management und Supportmodell |
+
 ## Kurzfazit
 
 Die Microsoft-Power-Platform-Variante ist für diesen technischen Projektkontext sehr gut geeignet, wenn sie konsequent als digitale Projektakte und nicht als weitere Projektliste umgesetzt wird. Entscheidend sind die verbindlichen Phasen Vorplanung, Ausführungsplanung, Planprüfung, BVB-Freigabe, Realisierung und Dokumentation, eine projektspezifische Rollenmatrix, belastbare Terminverschiebungslogik sowie konkrete Budget- und Stundenmodelle. SharePoint bleibt für Dokumente sinnvoll, Dataverse für die führenden strukturierten Daten, Power Apps für die Arbeitsoberfläche, Power Automate für Workflows und Power BI für Steuerung und Managementtransparenz.
